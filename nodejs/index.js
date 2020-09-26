@@ -5,7 +5,7 @@ const config = require('./config/config');
 const runExpressServer = require('./app');
 
 function createDatabaseFolders() {
-  const folders = ['accounts', 'teste'];
+  const folders = ['accounts'];
   folders.forEach((folderName) => {
     try {
       fs.mkdirSync(

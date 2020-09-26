@@ -10,14 +10,14 @@ const useCase = ({ accountId, amount }) => {
 
   const newBalance = currentAccount.balance - amount;
 
-  if (newBalance < 0) throw new Error('Saldo insuficiente');
+  if (newBalance < 0) return {message: 'Insufficient funds', success: false};
 
   resultAccount.balance = newBalance;
 
   const saved = database.storeSync(accountId, resultAccount, 'accounts');
 
-  if (saved) return { ...resultAccount, success: true };
-  throw new Error('Não foi possivel realizar a operação');
+  if (saved) return { data: {...resultAccount}, success: true, message: 'Operation completed successfully'};
+  throw new Error('Could not finish the operation');
 };
 
 useCase.dependencies = () => ({

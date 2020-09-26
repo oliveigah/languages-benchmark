@@ -13,8 +13,8 @@ const useCase = ({ accountId, amount }) => {
 
   const saved = database.storeSync(accountId, resultAccount, 'accounts');
 
-  if (saved) return { ...resultAccount, success: true };
-  throw new Error('Não foi possivel realizar a operação');
+  if (saved) return { ...resultAccount, success: true, message: 'Operation completed successfully'};
+  throw new Error('Could not finish the operation');
 };
 
 useCase.dependencies = () => ({
